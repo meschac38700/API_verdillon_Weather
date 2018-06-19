@@ -20,12 +20,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Console;
 import java.util.List;
 import java.util.Locale;
 
@@ -78,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(event.getAction() == MotionEvent.ACTION_UP) {
 
                     submit.setBackgroundColor(Color.rgb(51,181,229));
-
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(query.getWindowToken(), 0);
                 } else if(event.getAction() == MotionEvent.ACTION_DOWN) {
 
                     submit.setBackgroundColor(Color.rgb(10,142,165));
