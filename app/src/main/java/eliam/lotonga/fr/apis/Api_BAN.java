@@ -19,8 +19,7 @@ import java.util.Locale;
  */
 
 public class Api_BAN {
-    private final String OPEN_BAN_URL = "https://api-adresse.data.gouv.fr/search/?q=";
-
+    private static String OPEN_BAN_URL = "https://api-adresse.data.gouv.fr/search/?q=";
 
     public interface AsyncResponse {
         //  Nbr de population, code postal, code de la ville, context (departement), coordonnées

@@ -1,14 +1,19 @@
 package eliam.lotonga.fr.helloword;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -31,9 +36,7 @@ import static eliam.lotonga.fr.apis.Localisation.MY_PERMISSION_REQUEST_LOCATION;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText query;
-    private TextView villeMeteo;
     private Button detectMe, submit;
-
     private Localisation localisation;
 
     TextView city, humidite, pression, max, min, temperature, date, description;
@@ -41,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Typeface weatherFont;
     LocationManager locationManager;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.submit.setOnClickListener(this);
         this.localisation = new Localisation();
        // weatherFont = Typeface.createFromFile(R.drawable)createFromAsset(getApplicationContext().getAssets(), "fonts/weathericons-regular-webfont.ttf");
-
         city = (TextView)findViewById(R.id.city);
         humidite = (TextView)findViewById(R.id.humidite);
         pression = (TextView)findViewById(R.id.pression);
@@ -73,13 +77,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if(event.getAction() == MotionEvent.ACTION_UP) {
 
-                    submit.setWidth(submit.getWidth()-10);
-                    submit.setHeight(submit.getHeight()-10);
+                    submit.setBackgroundColor(Color.rgb(51,181,229));
 
                 } else if(event.getAction() == MotionEvent.ACTION_DOWN) {
 
-                    submit.setHeight(submit.getHeight()+10);
-                    submit.setWidth(submit.getWidth()+10);
+                    submit.setBackgroundColor(Color.rgb(10,142,165));
 
                 }
 
@@ -87,19 +89,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         detectMe.setOnTouchListener(new View.OnTouchListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
                 if(event.getAction() == MotionEvent.ACTION_UP) {
-
-                    detectMe.setWidth(detectMe.getWidth()-10);
-                    detectMe.setHeight(detectMe.getHeight()-10);
-
+                    detectMe.setBackgroundColor(Color.rgb(51,181,229));
                 } else if(event.getAction() == MotionEvent.ACTION_DOWN) {
-
-                    detectMe.setHeight(detectMe.getHeight()+10);
-                    detectMe.setWidth(detectMe.getWidth()+10);
-
+                    detectMe.setBackgroundColor(Color.rgb(10,142,165));
                 }
 
                 return false;
